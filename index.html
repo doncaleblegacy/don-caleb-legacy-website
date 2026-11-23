@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Don Caleb Legacy — Digital creative services for memories, moments and milestones. Preserving Memories. Honoring Lives. Creating Legacies.">
+<title>Don Caleb Legacy | Preserving Memories</title>
+<style>
+:root{--bg:#080807;--panel:#11110f;--gold:#c9a45c;--gold2:#f2d99b;--cream:#e9e3d7;--muted:#a9a296;--line:rgba(201,164,92,.22)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,8,7,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:52px;height:52px;object-fit:cover;border-radius:50%;border:1px solid var(--gold)}.brand-name{font-family:Georgia,serif;letter-spacing:2px;font-size:14px}.brand-name small{display:block;color:var(--gold);letter-spacing:4px;font-size:10px}
+nav{display:flex;gap:22px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#c9c2b6}nav a:hover{color:var(--gold2)}
+.btn{display:inline-block;padding:12px 19px;border:1px solid var(--gold);color:var(--gold2);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;transition:.25s}.btn:hover{background:var(--gold);color:#080807}.btn.fill{background:var(--gold);color:#090807}
+.hero{min-height:85vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,rgba(150,106,39,.17),transparent 55%),linear-gradient(180deg,#080807,#0c0b09)}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(201,164,92,.35) 1px,transparent 1px);background-size:44px 44px;opacity:.12;mask-image:linear-gradient(to bottom,black,transparent)}
+.hero-inner{position:relative;padding:65px 15px;max-width:900px}.hero-logo{width:min(390px,80vw);max-height:300px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(201,164,92,.2));margin-bottom:18px}
+.kicker{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:11px}.hero h1{font:clamp(34px,6vw,68px)/1.12 Georgia,serif;margin:15px 0;color:#f1e6ce;font-weight:400}.hero h1 span{color:var(--gold2)}.hero p{max-width:650px;margin:20px auto;color:#bcb5a8;font-size:15px}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+section{padding:90px 0}.section-head{text-align:center;max-width:700px;margin:0 auto 42px}.section-head h2{font:clamp(28px,4vw,44px) Georgia,serif;font-weight:400;margin:10px 0;color:#eee2c8}.section-head p{color:var(--muted);font-size:14px}.goldline{width:55px;height:1px;background:var(--gold);margin:20px auto}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}.about-copy h2{font:40px Georgia,serif;font-weight:400;color:var(--gold2)}.about-copy p{color:#bcb5a8}.about-quote{border-left:1px solid var(--gold);padding:24px;background:linear-gradient(90deg,rgba(201,164,92,.07),transparent);font:italic 22px Georgia,serif;color:#e7d6b1}
+.services{background:#0d0c0a}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.service{border:1px solid var(--line);background:linear-gradient(145deg,#14130f,#0b0b09);padding:25px;min-height:190px;transition:transform .25s,border .25s}.service:hover{transform:translateY(-5px);border-color:var(--gold)}.num{color:var(--gold);font:18px Georgia,serif}.service h3{font:22px Georgia,serif;font-weight:400;margin:14px 0 8px}.service p{color:var(--muted);font-size:13px;margin:0}
+.portfolio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}.feature{border:1px solid var(--line);overflow:hidden;background:#10100e}.feature img{width:100%;display:block;object-fit:cover}.family-photo{aspect-ratio:4/5;object-position:center 20%}.feature-text{padding:22px}.feature-text h3{font:24px Georgia,serif;font-weight:400;margin:0 0 8px;color:var(--gold2)}.feature-text p{font-size:13px;color:var(--muted);margin:0}
+.portfolio-side{display:grid;gap:22px}.sample-box{border:1px solid var(--line);padding:26px;min-height:200px;background:radial-gradient(circle at top right,rgba(201,164,92,.11),transparent 50%),#11110f}.sample-box h3{font:24px Georgia,serif;font-weight:400;color:var(--gold2);margin:0 0 10px}.sample-box p{color:var(--muted);font-size:13px}.sample-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.value{padding:22px 16px;border-top:1px solid var(--gold);background:#10100e;text-align:center}.value h3{font:19px Georgia,serif;font-weight:400}.value p{color:var(--muted);font-size:12px}
+.contact{background:radial-gradient(ellipse at center,rgba(139,98,36,.13),transparent 65%),#0c0b09;text-align:center}.contact h2{font:clamp(30px,5vw,48px) Georgia,serif;font-weight:400;color:var(--gold2)}.contact p{color:var(--muted);max-width:620px;margin:15px auto 28px}
+footer{border-top:1px solid var(--line);padding:25px 0;color:#817b71;font-size:11px;text-align:center;letter-spacing:1px}footer strong{color:var(--gold)}
+@media(max-width:760px){nav{display:none}.about-grid,.portfolio-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.values{grid-template-columns:1fr 1fr}.hero{min-height:75vh}.hero-logo{max-height:220px}section{padding:65px 0}}
+@media(max-width:480px){.cards{grid-template-columns:1fr}.brand-name{font-size:12px}.btn{padding:11px 14px}.about-copy h2{font-size:32px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#top"><img src="logo.jpg" alt="Don Caleb Legacy logo"><span class="brand-name">DON CALEB<small>LEGACY</small></span></a>
+<nav><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#values">Our Values</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#contact">Inquire</a>
+</div></header>
+<main id="top">
+<div class="hero"><div class="hero-inner">
+<img class="hero-logo" src="logo.jpg" alt="Don Caleb Legacy emblem">
+<div class="kicker">Digital Creative Services</div>
+<h1>Preserving <span>Memories.</span><br>Honoring Lives.<br>Creating Legacies.</h1>
+<p>Meaningful digital creations for memories, moments and milestones — crafted with care, creativity, and respect for every story.</p>
+<div class="actions"><a class="btn fill" href="#portfolio">Explore the Portfolio</a><a class="btn" href="#services">Discover Services</a></div>
+</div></div>
+<section id="about"><div class="wrap about-grid">
+<div class="about-copy"><div class="kicker">The Meaning Behind the Work</div><h2>More than an edit.<br>A memory preserved.</h2><p>Don Caleb Legacy is a digital creative service dedicated to transforming photographs and ideas into meaningful digital creations designed to be shared, treasured, and remembered.</p><p>Every project is approached with attention to detail and an appreciation for the memories, people, and moments behind the image.</p></div>
+<div class="about-quote">“Some memories deserve more than to be remembered. They deserve to be beautifully preserved.”</div>
+</div></section>
+<section id="services" class="services"><div class="wrap"><div class="section-head"><div class="kicker">Creative Services</div><h2>Crafted for Memories & Milestones</h2><p>Digital creative services designed to make personal stories, celebrations, and businesses stand out.</p><div class="goldline"></div></div>
+<div class="cards">
+<div class="service"><div class="num">01</div><h3>Photo Restoration</h3><p>Digital restoration of faded, damaged, scratched, and aging photographs—with care for original identity and character.</p></div>
+<div class="service"><div class="num">02</div><h3>Creative & Tribute Designs</h3><p>Memorial, tribute, heavenly, family portrait, and meaningful creative compositions.</p></div>
+<div class="service"><div class="num">03</div><h3>Personalized Digital Gifts</h3><p>Thoughtful custom designs created for special people and unforgettable moments.</p></div>
+<div class="service"><div class="num">04</div><h3>Business Design</h3><p>Logo concepts, business cards, invoices, promotional graphics, and branding materials.</p></div>
+<div class="service"><div class="num">05</div><h3>Digital Products</h3><p>Printable planners, trackers, journals, coloring books, templates, and activity sheets.</p></div>
+<div class="service"><div class="num">06</div><h3>Moments & Milestones</h3><p>Wedding, anniversary, birthday, celebration, and milestone graphics.</p></div>
+<div class="service"><div class="num">07</div><h3>Social Media Designs</h3><p>Post layouts, promotional graphics, starter templates, and content visuals.</p></div>
+<div class="service"><div class="num">08</div><h3>Travel & Tourism</h3><p>Tourism posters, travel package promotions, and destination-focused visuals.</p></div>
+<div class="service"><div class="num">09</div><h3>Photo Editing</h3><p>Creative photo enhancements and polished visual compositions for digital use.</p></div>
+</div></div></section>
+<section id="portfolio"><div class="wrap"><div class="section-head"><div class="kicker">Selected Work</div><h2>Memories, Made Meaningful</h2><p>A showcase of creative direction, restoration, and personalized digital design.</p><div class="goldline"></div></div>
+<div class="portfolio-grid">
+<div class="feature"><img class="family-photo" src="family.png" alt="Family portrait creative sample"><div class="feature-text"><h3>Family Portrait — Featured Sample</h3><p>A family moment presented as a sample of personalized portrait and memory-focused creative work. The people and original moment remain the heart of the image.</p></div></div>
+<div class="portfolio-side">
+<div class="sample-box"><div class="sample-label">Photo Restoration</div><h3>Bringing Old Memories Back to Life</h3><p>Restoration work focuses on clarity, color, detail, and preserving the natural identity of the original photograph.</p><a href="#contact" class="btn">Request a Photo Assessment</a></div>
+<div class="sample-box"><div class="sample-label">Creative Design</div><h3>Designed Around Your Story</h3><p>From tribute designs to celebrations and business visuals, each creation is shaped around its purpose and message.</p></div>
+</div></div></div></section>
+<section id="values"><div class="wrap"><div class="section-head"><div class="kicker">The Standard</div><h2>Why Don Caleb Legacy</h2><p>Creative work with meaning, care, and a commitment to quality.</p><div class="goldline"></div></div>
+<div class="values"><div class="value"><h3>Attention to Detail</h3><p>Thoughtful finishing and careful visual refinement.</p></div><div class="value"><h3>Respect for Identity</h3><p>Photographs treated with care—not altered beyond the intention.</p></div><div class="value"><h3>Personalized</h3><p>Each design is shaped for the story and purpose behind it.</p></div><div class="value"><h3>Digital Delivery</h3><p>Convenient digital creative services and deliverables.</p></div></div></div></section>
+<section id="contact" class="contact"><div class="wrap"><div class="kicker">Start a Conversation</div><h2>Have a memory or idea<br>worth preserving?</h2><p>Share the photo, concept, or project details. Every inquiry begins with understanding the story and the desired result.</p><div class="actions"><a class="btn fill" href="mailto:doncaleblegacy@gmail.com?subject=Inquiry%20-%20Don%20Caleb%20Legacy">Email an Inquiry</a><a class="btn" href="#top">Back to Top</a></div></div></section>
+</main>
+<footer><div class="wrap"><strong>DON CALEB LEGACY</strong> · Preserving Memories. Honoring Lives. Creating Legacies.<br>Digital Creative Services · © 2026</div></footer>
+</body>
+</html>

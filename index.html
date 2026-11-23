@@ -136,5 +136,384 @@ menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
+<!-- DON CALEB LEGACY - OLD PHOTO PUZZLE -->
+<style>
+#dcl-puzzle-section {
+  padding: 90px 20px;
+  background: #080808;
+  color: #f5f5f5;
+  text-align: center;
+}
+
+#dcl-puzzle-section .dcl-puzzle-container {
+  max-width: 850px;
+  margin: auto;
+}
+
+#dcl-puzzle-section .dcl-puzzle-label {
+  color: #d4af37;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+#dcl-puzzle-section h2 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-bottom: 15px;
+}
+
+#dcl-puzzle-section .dcl-puzzle-description {
+  color: #aaa;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
+
+#dcl-puzzle-board {
+  width: min(100%, 420px);
+  aspect-ratio: 1 / 1;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 5px;
+  background: #222;
+  border: 1px solid #b99735;
+}
+
+.dcl-puzzle-tile {
+  border: 1px solid #333;
+  cursor: pointer;
+  background-image: url('assets5/puzzle-oldphoto.png');
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+  transition: .15s;
+}
+
+.dcl-puzzle-tile:hover {
+  filter: brightness(1.15);
+}
+
+.dcl-puzzle-empty {
+  background: #090909 !important;
+  border: 1px dashed #444;
+  cursor: default;
+}
+
+#dcl-puzzle-stats {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  margin: 20px 0;
+  color: #d4af37;
+  font-size: 15px;
+}
+
+#dcl-puzzle-stats span {
+  color: white;
+  font-weight: bold;
+}
+
+.dcl-puzzle-button {
+  display: inline-block;
+  padding: 13px 24px;
+  margin: 8px;
+  border: 1px solid #d4af37;
+  background: #d4af37;
+  color: #080808;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.dcl-puzzle-button:hover {
+  background: transparent;
+  color: #d4af37;
+}
+
+.dcl-puzzle-secondary {
+  background: transparent;
+  color: #d4af37;
+}
+
+#dcl-puzzle-win {
+  display: none;
+  margin: 30px auto 0;
+  padding: 25px;
+  border: 1px solid #d4af37;
+  background: #111;
+  max-width: 600px;
+}
+
+#dcl-puzzle-win h3 {
+  color: #d4af37;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+#dcl-puzzle-win p {
+  color: #ccc;
+  line-height: 1.7;
+}
+
+@media(max-width:600px) {
+  #dcl-puzzle-section {
+    padding: 60px 15px;
+  }
+
+  #dcl-puzzle-board {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+</style>
+
+<section id="dcl-puzzle-section">
+  <div class="dcl-puzzle-container">
+
+    <div class="dcl-puzzle-label">MEMORIES CHALLENGE</div>
+
+    <h2>Bring the Memories Back</h2>
+
+    <p class="dcl-puzzle-description">
+      An old photograph holds a lifetime of memories.
+      Can you put this picture back together?
+      Complete the puzzle and discover how treasured photographs
+      can be brought back to life.
+    </p>
+
+    <div id="dcl-puzzle-board"></div>
+
+    <div id="dcl-puzzle-stats">
+      <div>Moves: <span id="dcl-puzzle-moves">0</span></div>
+      <div>Time: <span id="dcl-puzzle-time">00:00</span></div>
+    </div>
+
+    <button class="dcl-puzzle-button"
+      onclick="dclPuzzleShuffle()">
+      SHUFFLE PUZZLE
+    </button>
+
+    <button class="dcl-puzzle-button dcl-puzzle-secondary"
+      onclick="dclPuzzleReset()">
+      RESET
+    </button>
+
+    <div id="dcl-puzzle-win">
+      <h3>🎉 Puzzle Completed!</h3>
+
+      <p>
+        You brought the picture back together.
+        Imagine what can be done with your own treasured
+        old photographs.
+      </p>
+
+      <a class="dcl-puzzle-button"
+         href="https://wa.me/639567365151?text=Hello%20Don%20Caleb%20Legacy%2C%20I%20completed%20the%20Old%20Photo%20Puzzle%20and%20would%20like%20to%20inquire%20about%20photo%20restoration."
+         target="_blank">
+        RESTORE MY OLD PHOTO
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+
+  const board = document.getElementById("dcl-puzzle-board");
+  const movesDisplay = document.getElementById("dcl-puzzle-moves");
+  const timeDisplay = document.getElementById("dcl-puzzle-time");
+  const winBox = document.getElementById("dcl-puzzle-win");
+
+  let puzzle = [];
+  let moves = 0;
+  let seconds = 0;
+  let timer = null;
+  let started = false;
+  let completed = false;
+
+  function solvedState() {
+    return [1,2,3,4,5,6,7,8,0];
+  }
+
+  function isSolved() {
+    return puzzle.every((value, index) =>
+      value === solvedState()[index]
+    );
+  }
+
+  function formatTime() {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    return String(mins).padStart(2, "0") +
+      ":" + String(secs).padStart(2, "0");
+  }
+
+  function startTimer() {
+    if (started) return;
+
+    started = true;
+
+    timer = setInterval(() => {
+      seconds++;
+      timeDisplay.textContent = formatTime();
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+  }
+
+  function render() {
+    board.innerHTML = "";
+
+    puzzle.forEach((tile, index) => {
+
+      const element = document.createElement("div");
+
+      element.className = "dcl-puzzle-tile";
+
+      if (tile === 0) {
+        element.classList.add("dcl-puzzle-empty");
+      } else {
+
+        const originalPosition = tile - 1;
+
+        const row = Math.floor(originalPosition / 3);
+        const col = originalPosition % 3;
+
+        element.style.backgroundPosition =
+          (col * 50) + "% " + (row * 50) + "%";
+      }
+
+      element.addEventListener("click", () => {
+        moveTile(index);
+      });
+
+      board.appendChild(element);
+    });
+  }
+
+  function getNeighbors(index) {
+    const neighbors = [];
+
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+
+    if (row > 0) neighbors.push(index - 3);
+    if (row < 2) neighbors.push(index + 3);
+    if (col > 0) neighbors.push(index - 1);
+    if (col < 2) neighbors.push(index + 1);
+
+    return neighbors;
+  }
+
+  function moveTile(index) {
+    if (completed) return;
+
+    const emptyIndex = puzzle.indexOf(0);
+
+    if (!getNeighbors(emptyIndex).includes(index)) {
+      return;
+    }
+
+    startTimer();
+
+    [puzzle[index], puzzle[emptyIndex]] =
+      [puzzle[emptyIndex], puzzle[index]];
+
+    moves++;
+
+    movesDisplay.textContent = moves;
+
+    render();
+
+    if (isSolved()) {
+      completed = true;
+      stopTimer();
+      winBox.style.display = "block";
+
+      setTimeout(() => {
+        winBox.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 300);
+    }
+  }
+
+  function shuffleArray() {
+    let array;
+
+    do {
+      array = solvedState();
+
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+
+    } while (!isSolvable(array) || array.join("") === "123456780");
+
+    return array;
+  }
+
+  function isSolvable(array) {
+    let inversions = 0;
+
+    const values = array.filter(value => value !== 0);
+
+    for (let i = 0; i < values.length; i++) {
+      for (let j = i + 1; j < values.length; j++) {
+        if (values[i] > values[j]) {
+          inversions++;
+        }
+      }
+    }
+
+    return inversions % 2 === 0;
+  }
+
+  window.dclPuzzleShuffle = function () {
+    stopTimer();
+
+    puzzle = shuffleArray();
+    moves = 0;
+    seconds = 0;
+    started = false;
+    completed = false;
+
+    movesDisplay.textContent = "0";
+    timeDisplay.textContent = "00:00";
+    winBox.style.display = "none";
+
+    render();
+  };
+
+  window.dclPuzzleReset = function () {
+    stopTimer();
+
+    puzzle = solvedState();
+    moves = 0;
+    seconds = 0;
+    started = false;
+    completed = false;
+
+    movesDisplay.textContent = "0";
+    timeDisplay.textContent = "00:00";
+    winBox.style.display = "none";
+
+    render();
+  };
+
+  dclPuzzleShuffle();
+
+})();
+</script>
+<!-- END DON CALEB LEGACY PUZZLE -->
 </body>
 </html>

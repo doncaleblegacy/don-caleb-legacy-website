@@ -1093,24 +1093,13 @@
 
       modalArt.className =
         "wi-art wi-modal-art " + design.theme;
-
-      modalArt.innerHTML =
-      if (Number(previewButton.dataset.preview) === 0) {
-        modalArt.innerHTML =
-          '<span class="wi-tag">A SPECIAL INVITATION</span>' +
-          '<div class="wi-kicker">TO CELEBRATE THE WEDDING OF</div>' +
-          '<div class="wi-name">Sarah<br><em>&</em><br>Michael</div>' +
-          '<div class="wi-ornament">❧</div>' +
-          '<div class="wi-date">DECEMBER 20, 2026 · 4:00 PM</div>' +
-          '<div class="wi-bottom">YOU ARE INVITED</div>';
-      } else {
-        modalArt.innerHTML =
-          '<span class="wi-tag">DESIGN PREVIEW</span>' +
-          '<div class="wi-kicker">' + design.kicker + '</div>' +
-          '<div class="wi-name">' + design.title + '</div>' +
-          '<div class="wi-ornament">' + design.ornament + '</div>' +
-          '<div class="wi-date">' + design.date + '</div>' +
-          '<div class="wi-bottom">YOU ARE INVITED</div>';
+modalArt.innerHTML =
+  '<span class="wi-tag">DESIGN PREVIEW</span>' +
+  '<div class="wi-kicker">' + design.kicker + '</div>' +
+  '<div class="wi-name">' + design.title + '</div>' +
+  '<div class="wi-ornament">' + design.ornament + '</div>' +
+  '<div class="wi-date">' + design.date + '</div>' +
+  '<div class="wi-bottom">YOU ARE INVITED</div>';
       }
       modalTitle.textContent = design.name;
       modalDescription.textContent =

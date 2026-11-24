@@ -1037,12 +1037,12 @@
         "wi-art wi-modal-art " + design.theme;
 
       modalArt.innerHTML =
-        '<span class="wi-tag">DESIGN PREVIEW</span>' +
-        '<div class="wi-kicker">' + design.kicker + '</div>' +
-        '<div class="wi-name">' + design.title + '</div>' +
-        '<div class="wi-ornament">' + design.ornament + '</div>' +
-        '<div class="wi-date">' + design.date + '</div>' +
-        '<div class="wi-bottom">YOU ARE INVITED</div>';
+  '<iframe ' +
+  'src="web-invitation/wedding-invitation-sample.html" ' +
+  'title="Wedding Invitation Sample" ' +
+  'style="width:100%;height:680px;border:0;display:block;background:#f7f1e8;" ' +
+  'loading="lazy">' +
+  '</iframe>';
 
       modalTitle.textContent = design.name;
       modalDescription.textContent =

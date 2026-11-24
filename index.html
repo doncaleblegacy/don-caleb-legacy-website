@@ -22,7 +22,7 @@
     </a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
     <nav class="navlinks" id="navLinks">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#values">Values</a><a href="#story">Founder Story</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#web-invitation">Web Invitation</a><a href="#values">Values</a><a href="#story">Founder Story</a><a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -116,6 +116,973 @@
     </div>
   </div>
 </section>
+  
+<!-- =====================================================
+ DON CALEB LEGACY - WEB INVITATION COLLECTION
+===================================================== -->
+
+<style>
+/* MAIN SECTION */
+#dcl-web-invitation {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,164,92,.10), transparent 55%),
+    #080808;
+  padding: 100px 0;
+  color: #f5f0e6;
+}
+
+#dcl-web-invitation .wi-heading {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 45px;
+}
+
+#dcl-web-invitation .wi-eyebrow {
+  color: #c9a45c;
+  font-size: 11px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#dcl-web-invitation .wi-title {
+  font-family: Georgia, serif;
+  font-size: clamp(35px, 6vw, 60px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 17px 0;
+}
+
+#dcl-web-invitation .wi-title span {
+  color: #ead4a0;
+  font-style: italic;
+}
+
+#dcl-web-invitation .wi-description {
+  color: #aaa39a;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* INTRO BANNER */
+#dcl-web-invitation .wi-banner {
+  border: 1px solid rgba(201,164,92,.3);
+  background: linear-gradient(120deg,#17140f,#0d0d0d);
+  padding: 35px;
+  margin: 45px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+#dcl-web-invitation .wi-banner h3 {
+  font-family: Georgia,serif;
+  font-size: clamp(24px,4vw,36px);
+  font-weight: 400;
+  margin: 8px 0;
+  color: #ead4a0;
+}
+
+#dcl-web-invitation .wi-banner p {
+  color: #aaa39a;
+  max-width: 600px;
+  margin: 0;
+  font-size: 14px;
+}
+
+#dcl-web-invitation .wi-banner-symbol {
+  font-family: Georgia,serif;
+  font-size: 75px;
+  color: #c9a45c;
+  opacity: .65;
+}
+
+/* FILTER BUTTONS */
+#dcl-web-invitation .wi-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin: 35px 0;
+}
+
+#dcl-web-invitation .wi-filter {
+  border: 1px solid rgba(201,164,92,.3);
+  color: #d8d0c3;
+  background: #111;
+  padding: 10px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+#dcl-web-invitation .wi-filter:hover,
+#dcl-web-invitation .wi-filter.active {
+  background: #c9a45c;
+  color: #080808;
+  border-color: #c9a45c;
+}
+
+/* GALLERY */
+#dcl-web-invitation .wi-gallery {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+
+#dcl-web-invitation .wi-card {
+  background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  overflow: hidden;
+  transition: .3s;
+}
+
+#dcl-web-invitation .wi-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(201,164,92,.5);
+  box-shadow: 0 15px 40px rgba(0,0,0,.35);
+}
+
+#dcl-web-invitation .wi-card[hidden] {
+  display: none !important;
+}
+
+/* SAMPLE DESIGN PREVIEWS */
+#dcl-web-invitation .wi-art {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px;
+  isolation: isolate;
+  transition: .5s;
+}
+
+#dcl-web-invitation .wi-art:before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255,255,255,.35);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#dcl-web-invitation .wi-art:after {
+  content: "✦";
+  position: absolute;
+  top: 28px;
+  right: 35px;
+  color: rgba(255,255,255,.5);
+  font-size: 22px;
+  animation: wiFloat 4s ease-in-out infinite;
+}
+
+#dcl-web-invitation .wi-art .wi-tag {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: .7;
+}
+
+#dcl-web-invitation .wi-art .wi-kicker {
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+#dcl-web-invitation .wi-art .wi-name {
+  font-family: Georgia,serif;
+  font-size: clamp(32px,4vw,43px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+#dcl-web-invitation .wi-art .wi-name em {
+  font-style: italic;
+}
+
+#dcl-web-invitation .wi-art .wi-ornament {
+  font-family: Georgia,serif;
+  font-size: 32px;
+  margin: 13px 0;
+}
+
+#dcl-web-invitation .wi-art .wi-date {
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 17px;
+}
+
+#dcl-web-invitation .wi-art .wi-bottom {
+  position: absolute;
+  bottom: 29px;
+  font-family: Georgia,serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+/* DESIGN THEMES */
+#dcl-web-invitation .wi-wedding {
+  background:
+    radial-gradient(ellipse at 50% 40%,#69543d,#292017 55%,#120f0c);
+  color: #f5e7ca;
+}
+
+#dcl-web-invitation .wi-birthday {
+  background:
+    radial-gradient(circle at 50% 30%,#72552a,#241a0c 75%);
+  color: #ffe7a9;
+}
+
+#dcl-web-invitation .wi-debut {
+  background:
+    radial-gradient(ellipse at 50% 45%,#633d58,#20101f 75%);
+  color: #f8dff0;
+}
+
+#dcl-web-invitation .wi-anniversary {
+  background:
+    radial-gradient(ellipse at 50% 40%,#713f38,#21100e 75%);
+  color: #f7d9cb;
+}
+
+#dcl-web-invitation .wi-christening {
+  background:
+    radial-gradient(ellipse at 50% 40%,#687d7a,#1b2928 75%);
+  color: #f1f1df;
+}
+
+#dcl-web-invitation .wi-graduation {
+  background:
+    radial-gradient(ellipse at 50% 40%,#344d6b,#101a2a 75%);
+  color: #e3e8f5;
+}
+
+#dcl-web-invitation .wi-reunion {
+  background:
+    radial-gradient(ellipse at 50% 40%,#76603c,#292013 75%);
+  color: #f6e5bd;
+}
+
+#dcl-web-invitation .wi-memorial {
+  background:
+    radial-gradient(ellipse at 50% 40%,#555b59,#171b1a 75%);
+  color: #eee9df;
+}
+
+#dcl-web-invitation .wi-corporate {
+  background:
+    radial-gradient(ellipse at 50% 40%,#55503f,#171613 75%);
+  color: #eadbb7;
+}
+
+#dcl-web-invitation .wi-housewarming {
+  background:
+    radial-gradient(ellipse at 50% 40%,#765d43,#241a13 75%);
+  color: #f5e1c3;
+}
+
+@keyframes wiFloat {
+  0%,100% {transform:translateY(0) rotate(0deg)}
+  50% {transform:translateY(-10px) rotate(15deg)}
+}
+
+/* CARD INFORMATION */
+#dcl-web-invitation .wi-info {
+  padding: 23px;
+}
+
+#dcl-web-invitation .wi-category {
+  color: #c9a45c;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#dcl-web-invitation .wi-info h3 {
+  font-family: Georgia,serif;
+  font-weight: 400;
+  font-size: 23px;
+  margin: 8px 0;
+}
+
+#dcl-web-invitation .wi-info p {
+  color: #999;
+  font-size: 12px;
+  margin: 0 0 20px;
+}
+
+#dcl-web-invitation .wi-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+#dcl-web-invitation .wi-action {
+  flex: 1;
+  min-width: 110px;
+  padding: 11px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid #c9a45c;
+  background: transparent;
+  color: #ead4a0;
+  transition: .2s;
+}
+
+#dcl-web-invitation .wi-action.primary {
+  background: #c9a45c;
+  color: #080808;
+  font-weight: bold;
+}
+
+#dcl-web-invitation .wi-action:hover {
+  background: #ead4a0;
+  color: #080808;
+}
+
+/* BOTTOM CTA */
+#dcl-web-invitation .wi-footer {
+  text-align: center;
+  margin-top: 65px;
+  padding: 40px 20px;
+  border: 1px solid rgba(201,164,92,.25);
+  background: #10100e;
+}
+
+#dcl-web-invitation .wi-footer h3 {
+  font-family: Georgia,serif;
+  font-size: 29px;
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+#dcl-web-invitation .wi-footer p {
+  color: #aaa39a;
+  font-size: 13px;
+  margin-bottom: 23px;
+}
+
+#dcl-web-invitation .wi-footer a {
+  display: inline-block;
+  background: #c9a45c;
+  color: #080808;
+  padding: 13px 22px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* DESIGN PREVIEW MODAL */
+#dcl-wi-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.92);
+  padding: 20px;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+#dcl-wi-modal.open {
+  display: flex;
+}
+
+#dcl-wi-modal .wi-modal-box {
+  position: relative;
+  width: min(100%,650px);
+  background: #101010;
+  border: 1px solid rgba(201,164,92,.5);
+  padding: 45px 25px 30px;
+  text-align: center;
+}
+
+#dcl-wi-modal .wi-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: 0;
+  color: #ead4a0;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#dcl-wi-modal .wi-modal-art {
+  width: min(100%,380px);
+  margin: 0 auto 25px;
+  min-height: 440px;
+  height: auto;
+}
+
+#dcl-wi-modal .wi-modal-box h3 {
+  font-family: Georgia,serif;
+  font-weight: 400;
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+#dcl-wi-modal .wi-modal-box p {
+  color: #aaa39a;
+  font-size: 13px;
+}
+
+#dcl-wi-modal .wi-modal-inquire {
+  display: inline-block;
+  margin-top: 15px;
+  background: #c9a45c;
+  color: #080808;
+  padding: 13px 22px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@media(max-width:900px) {
+  #dcl-web-invitation .wi-gallery {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px) {
+  #dcl-web-invitation {
+    padding: 70px 0;
+  }
+
+  #dcl-web-invitation .wi-banner {
+    padding: 25px;
+  }
+
+  #dcl-web-invitation .wi-banner-symbol {
+    font-size: 45px;
+  }
+
+  #dcl-web-invitation .wi-gallery {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  #dcl-web-invitation .wi-art {
+    height: 360px;
+  }
+
+  #dcl-wi-modal .wi-modal-box {
+    padding: 45px 15px 25px;
+  }
+
+  #dcl-wi-modal .wi-modal-art {
+    min-height: 400px;
+  }
+}
+</style>
+
+<section id="dcl-web-invitation">
+  <div class="container">
+
+    <div class="wi-heading">
+      <div class="wi-eyebrow">A New Way to Celebrate</div>
+
+      <h2 class="wi-title">
+        Invitations That<br>
+        <span>Become Memories.</span>
+      </h2>
+
+      <p class="wi-description">
+        Discover beautifully designed digital invitations
+        for life's most meaningful celebrations.
+        Choose a design and create an invitation experience
+        worth remembering.
+      </p>
+    </div>
+
+    <div class="wi-banner">
+      <div>
+        <div class="wi-eyebrow">DON CALEB LEGACY PRESENTS</div>
+        <h3>Web Invitation Collection</h3>
+        <p>
+          Personalized digital invitations featuring photos,
+          videos, music, event details, countdowns,
+          and beautiful animations.
+        </p>
+      </div>
+      <div class="wi-banner-symbol">✦</div>
+    </div>
+
+    <!-- CATEGORY FILTERS -->
+    <div class="wi-filters" id="dclWiFilters">
+      <button class="wi-filter active" data-filter="all">All Designs</button>
+      <button class="wi-filter" data-filter="wedding">Wedding</button>
+      <button class="wi-filter" data-filter="birthday">Birthday</button>
+      <button class="wi-filter" data-filter="debut">Debut</button>
+      <button class="wi-filter" data-filter="anniversary">Anniversary</button>
+      <button class="wi-filter" data-filter="christening">Christening</button>
+      <button class="wi-filter" data-filter="graduation">Graduation</button>
+      <button class="wi-filter" data-filter="reunion">Reunion</button>
+      <button class="wi-filter" data-filter="memorial">Memorial</button>
+      <button class="wi-filter" data-filter="corporate">Corporate</button>
+      <button class="wi-filter" data-filter="housewarming">Housewarming</button>
+    </div>
+
+    <!-- DESIGN GALLERY -->
+    <div class="wi-gallery" id="dclWiGallery">
+
+      <article class="wi-card" data-category="wedding">
+        <div class="wi-art wi-wedding">
+          <span class="wi-tag">DESIGN 01</span>
+          <div class="wi-kicker">THE WEDDING OF</div>
+          <div class="wi-name">Sarah <em>&</em><br>Michael</div>
+          <div class="wi-ornament">❧</div>
+          <div class="wi-date">DECEMBER 20, 2026</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Wedding Collection</div>
+          <h3>Forever Begins</h3>
+          <p>Romantic • Elegant • Timeless</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="0">Preview Design</button>
+            <button class="wi-action" data-inquire="Forever Begins - Wedding">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="birthday">
+        <div class="wi-art wi-birthday">
+          <span class="wi-tag">DESIGN 02</span>
+          <div class="wi-kicker">A SPECIAL CELEBRATION</div>
+          <div class="wi-name">Happy<br>Birthday!</div>
+          <div class="wi-ornament">✦</div>
+          <div class="wi-date">A DAY TO REMEMBER</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Birthday Collection</div>
+          <h3>Golden Celebration</h3>
+          <p>Festive • Modern • Joyful</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="1">Preview Design</button>
+            <button class="wi-action" data-inquire="Golden Celebration - Birthday">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="debut">
+        <div class="wi-art wi-debut">
+          <span class="wi-tag">DESIGN 03</span>
+          <div class="wi-kicker">THE DEBUT OF</div>
+          <div class="wi-name">Isabella</div>
+          <div class="wi-ornament">✧</div>
+          <div class="wi-date">A NIGHT OF ELEGANCE</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Debut Collection</div>
+          <h3>Her Special Night</h3>
+          <p>Luxury • Glamorous • Elegant</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="2">Preview Design</button>
+            <button class="wi-action" data-inquire="Her Special Night - Debut">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="anniversary">
+        <div class="wi-art wi-anniversary">
+          <span class="wi-tag">DESIGN 04</span>
+          <div class="wi-kicker">CELEBRATING LOVE</div>
+          <div class="wi-name">Together<br>Forever</div>
+          <div class="wi-ornament">♡</div>
+          <div class="wi-date">ANOTHER YEAR OF LOVE</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Anniversary Collection</div>
+          <h3>Years of Love</h3>
+          <p>Warm • Romantic • Meaningful</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="3">Preview Design</button>
+            <button class="wi-action" data-inquire="Years of Love - Anniversary">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="christening">
+        <div class="wi-art wi-christening">
+          <span class="wi-tag">DESIGN 05</span>
+          <div class="wi-kicker">A BLESSED OCCASION</div>
+          <div class="wi-name">Little<br>Angel</div>
+          <div class="wi-ornament">✧</div>
+          <div class="wi-date">A DAY OF BLESSINGS</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Christening Collection</div>
+          <h3>A Little Blessing</h3>
+          <p>Soft • Graceful • Sweet</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="4">Preview Design</button>
+            <button class="wi-action" data-inquire="A Little Blessing - Christening">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="graduation">
+        <div class="wi-art wi-graduation">
+          <span class="wi-tag">DESIGN 06</span>
+          <div class="wi-kicker">A NEW CHAPTER BEGINS</div>
+          <div class="wi-name">The<br>Graduate</div>
+          <div class="wi-ornament">✦</div>
+          <div class="wi-date">CELEBRATING SUCCESS</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Graduation Collection</div>
+          <h3>Beyond the Finish Line</h3>
+          <p>Bold • Inspiring • Modern</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="5">Preview Design</button>
+            <button class="wi-action" data-inquire="Beyond the Finish Line - Graduation">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="reunion">
+        <div class="wi-art wi-reunion">
+          <span class="wi-tag">DESIGN 07</span>
+          <div class="wi-kicker">TOGETHER AGAIN</div>
+          <div class="wi-name">Family<br>Reunion</div>
+          <div class="wi-ornament">❧</div>
+          <div class="wi-date">MEMORIES BRING US HOME</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Reunion Collection</div>
+          <h3>Back Together</h3>
+          <p>Family • Warm • Nostalgic</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="6">Preview Design</button>
+            <button class="wi-action" data-inquire="Back Together - Reunion">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="memorial">
+        <div class="wi-art wi-memorial">
+          <span class="wi-tag">DESIGN 08</span>
+          <div class="wi-kicker">A LIFE REMEMBERED</div>
+          <div class="wi-name">Forever<br>In Our Hearts</div>
+          <div class="wi-ornament">♡</div>
+          <div class="wi-date">HONORING A BEAUTIFUL LIFE</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Memorial Collection</div>
+          <h3>Forever Remembered</h3>
+          <p>Peaceful • Respectful • Timeless</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="7">Preview Design</button>
+            <button class="wi-action" data-inquire="Forever Remembered - Memorial">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="corporate">
+        <div class="wi-art wi-corporate">
+          <span class="wi-tag">DESIGN 09</span>
+          <div class="wi-kicker">AN EXCLUSIVE EVENT</div>
+          <div class="wi-name">The<br>Gathering</div>
+          <div class="wi-ornament">✦</div>
+          <div class="wi-date">A SPECIAL CORPORATE EVENT</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Corporate Collection</div>
+          <h3>Exclusive Gathering</h3>
+          <p>Professional • Refined • Premium</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="8">Preview Design</button>
+            <button class="wi-action" data-inquire="Exclusive Gathering - Corporate">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wi-card" data-category="housewarming">
+        <div class="wi-art wi-housewarming">
+          <span class="wi-tag">DESIGN 10</span>
+          <div class="wi-kicker">A NEW HOME, A NEW MEMORY</div>
+          <div class="wi-name">Welcome<br>Home</div>
+          <div class="wi-ornament">⌂</div>
+          <div class="wi-date">LET'S CELEBRATE TOGETHER</div>
+          <div class="wi-bottom">YOU ARE INVITED</div>
+        </div>
+        <div class="wi-info">
+          <div class="wi-category">Housewarming Collection</div>
+          <h3>New Beginnings</h3>
+          <p>Cozy • Elegant • Welcoming</p>
+          <div class="wi-actions">
+            <button class="wi-action primary" data-preview="9">Preview Design</button>
+            <button class="wi-action" data-inquire="New Beginnings - Housewarming">Inquire ↗</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="wi-footer">
+      <h3>A Celebration Worth Sharing.</h3>
+      <p>
+        Looking for a different style or a personalized invitation?
+        Send an inquiry to discuss a custom design.
+      </p>
+      <a href="https://wa.me/639567365151?text=Hello%20Don%20Caleb%20Legacy%2C%20I%20would%20like%20to%20inquire%20about%20a%20custom%20Web%20Invitation."
+         target="_blank" rel="noopener">
+        REQUEST A CUSTOM DESIGN ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- DESIGN PREVIEW MODAL -->
+<div id="dcl-wi-modal" aria-hidden="true">
+  <div class="wi-modal-box" role="dialog" aria-modal="true" aria-labelledby="dclWiModalTitle">
+    <button class="wi-modal-close" id="dclWiClose" aria-label="Close preview">&times;</button>
+    <div id="dclWiModalArt" class="wi-art wi-modal-art"></div>
+    <h3 id="dclWiModalTitle">Invitation Preview</h3>
+    <p id="dclWiModalDescription">
+      Sample invitation design.
+    </p>
+    <a id="dclWiModalInquiry" class="wi-modal-inquire"
+       href="#" target="_blank" rel="noopener">
+      INQUIRE ABOUT THIS DESIGN ↗
+    </a>
+  </div>
+</div>
+
+<script>
+(function () {
+  const section = document.getElementById("dcl-web-invitation");
+  if (!section) return;
+
+  const filters = section.querySelectorAll(".wi-filter");
+  const cards = section.querySelectorAll(".wi-card");
+
+  const modal = document.getElementById("dcl-wi-modal");
+  const modalArt = document.getElementById("dclWiModalArt");
+  const modalTitle = document.getElementById("dclWiModalTitle");
+  const modalDescription = document.getElementById("dclWiModalDescription");
+  const modalInquiry = document.getElementById("dclWiModalInquiry");
+  const closeButton = document.getElementById("dclWiClose");
+
+  const designs = [
+    {
+      name: "Forever Begins",
+      category: "Wedding",
+      description: "An elegant romantic wedding invitation concept.",
+      theme: "wi-wedding",
+      kicker: "THE WEDDING OF",
+      title: "Sarah <em>&</em><br>Michael",
+      ornament: "❧",
+      date: "DECEMBER 20, 2026"
+    },
+    {
+      name: "Golden Celebration",
+      category: "Birthday",
+      description: "A festive and elegant birthday invitation concept.",
+      theme: "wi-birthday",
+      kicker: "A SPECIAL CELEBRATION",
+      title: "Happy<br>Birthday!",
+      ornament: "✦",
+      date: "A DAY TO REMEMBER"
+    },
+    {
+      name: "Her Special Night",
+      category: "Debut",
+      description: "A glamorous invitation for a special debut.",
+      theme: "wi-debut",
+      kicker: "THE DEBUT OF",
+      title: "Isabella",
+      ornament: "✧",
+      date: "A NIGHT OF ELEGANCE"
+    },
+    {
+      name: "Years of Love",
+      category: "Anniversary",
+      description: "A warm and romantic anniversary invitation.",
+      theme: "wi-anniversary",
+      kicker: "CELEBRATING LOVE",
+      title: "Together<br>Forever",
+      ornament: "♡",
+      date: "ANOTHER YEAR OF LOVE"
+    },
+    {
+      name: "A Little Blessing",
+      category: "Christening",
+      description: "A soft and graceful christening invitation.",
+      theme: "wi-christening",
+      kicker: "A BLESSED OCCASION",
+      title: "Little<br>Angel",
+      ornament: "✧",
+      date: "A DAY OF BLESSINGS"
+    },
+    {
+      name: "Beyond the Finish Line",
+      category: "Graduation",
+      description: "A modern invitation celebrating achievement.",
+      theme: "wi-graduation",
+      kicker: "A NEW CHAPTER BEGINS",
+      title: "The<br>Graduate",
+      ornament: "✦",
+      date: "CELEBRATING SUCCESS"
+    },
+    {
+      name: "Back Together",
+      category: "Reunion",
+      description: "A warm invitation for family and friends.",
+      theme: "wi-reunion",
+      kicker: "TOGETHER AGAIN",
+      title: "Family<br>Reunion",
+      ornament: "❧",
+      date: "MEMORIES BRING US HOME"
+    },
+    {
+      name: "Forever Remembered",
+      category: "Memorial",
+      description: "A respectful invitation honoring a loved one.",
+      theme: "wi-memorial",
+      kicker: "A LIFE REMEMBERED",
+      title: "Forever<br>In Our Hearts",
+      ornament: "♡",
+      date: "HONORING A BEAUTIFUL LIFE"
+    },
+    {
+      name: "Exclusive Gathering",
+      category: "Corporate",
+      description: "A refined invitation for corporate occasions.",
+      theme: "wi-corporate",
+      kicker: "AN EXCLUSIVE EVENT",
+      title: "The<br>Gathering",
+      ornament: "✦",
+      date: "A SPECIAL CORPORATE EVENT"
+    },
+    {
+      name: "New Beginnings",
+      category: "Housewarming",
+      description: "A welcoming invitation for a new home celebration.",
+      theme: "wi-housewarming",
+      kicker: "A NEW HOME, A NEW MEMORY",
+      title: "Welcome<br>Home",
+      ornament: "⌂",
+      date: "LET'S CELEBRATE TOGETHER"
+    }
+  ];
+
+  function whatsappLink(designName) {
+    const message =
+      "Hello Don Caleb Legacy, I would like to inquire about the Web Invitation design: " +
+      designName +
+      ". May I know the details and pricing?";
+
+    return "https://wa.me/639567365151?text=" +
+      encodeURIComponent(message);
+  }
+
+  // CATEGORY FILTER
+  filters.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const category = button.dataset.filter;
+
+      filters.forEach(function (item) {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      cards.forEach(function (card) {
+        const matches =
+          category === "all" ||
+          card.dataset.category === category;
+
+        card.hidden = !matches;
+      });
+    });
+  });
+
+  // PREVIEW AND WHATSAPP INQUIRY
+  section.addEventListener("click", function (event) {
+    const previewButton = event.target.closest("[data-preview]");
+    const inquiryButton = event.target.closest("[data-inquire]");
+
+    if (inquiryButton) {
+      window.open(
+        whatsappLink(inquiryButton.dataset.inquire),
+        "_blank",
+        "noopener"
+      );
+      return;
+    }
+
+    if (previewButton) {
+      const design = designs[Number(previewButton.dataset.preview)];
+      if (!design) return;
+
+      modalArt.className =
+        "wi-art wi-modal-art " + design.theme;
+
+      modalArt.innerHTML =
+        '<span class="wi-tag">DESIGN PREVIEW</span>' +
+        '<div class="wi-kicker">' + design.kicker + '</div>' +
+        '<div class="wi-name">' + design.title + '</div>' +
+        '<div class="wi-ornament">' + design.ornament + '</div>' +
+        '<div class="wi-date">' + design.date + '</div>' +
+        '<div class="wi-bottom">YOU ARE INVITED</div>';
+
+      modalTitle.textContent = design.name;
+      modalDescription.textContent =
+        design.category + " Collection — " + design.description;
+
+      modalInquiry.href = whatsappLink(
+        design.name + " - " + design.category
+      );
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeButton.focus();
+    }
+  });
+
+  function closePreview() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  closeButton.addEventListener("click", closePreview);
+
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closePreview();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closePreview();
+    }
+  });
+})();
+</script>
+
+<!-- END DON CALEB LEGACY WEB INVITATION -->
+
 <!-- DON CALEB LEGACY - OLD PHOTO PUZZLE -->
 <style>
 #dcl-puzzle-section {

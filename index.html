@@ -1988,21 +1988,55 @@ menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-  <script>
-  (function () {
+  
+<script>
+(function () {
   const frame = document.getElementById("dclBaFrame");
   const slider = document.getElementById("dclBaRange");
 
   if (!frame || !slider) return;
 
-  slider.addEventListener("input", function () {
-    frame.style.setProperty(
-      "--position",
-      this.value + "%"
+  function updatePosition(clientX) {
+    const rect = frame.getBoundingClientRect();
+
+    const position = Math.max(
+      0,
+      Math.min(100, ((clientX - rect.left) / rect.width) * 100)
     );
+
+    frame.style.setProperty("--position", position + "%");
+    slider.value = Math.round(position);
+  }
+
+  let dragging = false;
+
+  frame.addEventListener("pointerdown", function (event) {
+    if (event.button !== undefined && event.button !== 0) return;
+
+    dragging = true;
+    frame.setPointerCapture(event.pointerId);
+    updatePosition(event.clientX);
+  });
+
+  frame.addEventListener("pointermove", function (event) {
+    if (!dragging) return;
+    updatePosition(event.clientX);
+  });
+
+  frame.addEventListener("pointerup", function () {
+    dragging = false;
+  });
+
+  frame.addEventListener("pointercancel", function () {
+    dragging = false;
+  });
+
+  slider.addEventListener("input", function () {
+    frame.style.setProperty("--position", this.value + "%");
   });
 })();
-      </script>
+</script>
+  
 <script src="language.js"></script>
 </body>
 </html>

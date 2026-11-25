@@ -35,7 +35,7 @@
       }
 
       const original = node.__dclOriginalText;
-      const key = original.trim();
+      const key = original.replace(/\s+/g, " ").trim();
 
       if (!key) return;
 

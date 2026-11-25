@@ -1,13 +1,9 @@
-/* Don Caleb Legacy - free, manually authored multilingual language switcher */
+/* Don Caleb Legacy - free manual language switcher */
 (async function () {
   const STORAGE_KEY = 'dcl_language';
   const DEFAULT_LANGUAGE = 'en';
-  const LANGUAGES = [
-    ['en', '🇬🇧', 'English'], ['fil', '🇵🇭', 'Filipino'],
-    ['es', '🇪🇸', 'Español'], ['fr', '🇫🇷', 'Français'],
-    ['de', '🇩🇪', 'Deutsch'], ['ja', '🇯🇵', '日本語'], ['zh', '🇨🇳', '简体中文']
-  ];
   let dictionaries = {};
+  let currentLanguage = DEFAULT_LANGUAGE;
 
   function translatePage(language) {
     const dictionary = dictionaries[language] || {};
@@ -28,7 +24,8 @@
         node.nodeValue = original;
       }
     });
-    document.documentElement.lang = language === 'fil' ? 'fil' : language;
+    document.documentElement.lang = language === 'fil' ? 'fil' : 'en';
+    currentLanguage = language;
     const select = document.getElementById('dclLanguageSelect');
     if (select) select.value = language;
     try { localStorage.setItem(STORAGE_KEY, language); } catch (_) {}
@@ -39,20 +36,11 @@
     if (!nav || document.getElementById('dclLanguageSelect')) return;
     const wrapper = document.createElement('div');
     wrapper.className = 'dcl-language-control';
-    const label = document.createElement('label');
-    label.className = 'dcl-sr-only'; label.htmlFor = 'dclLanguageSelect'; label.textContent = 'Website language';
-    const select = document.createElement('select');
-    select.id = 'dclLanguageSelect'; select.setAttribute('aria-label', 'Website language');
-    select.title = 'Select website language';
-    LANGUAGES.forEach(([code, flag, name]) => {
-      const option = document.createElement('option');
-      option.value = code; option.textContent = flag; option.title = name;
-      select.appendChild(option);
-    });
-    wrapper.append(label, select); nav.appendChild(wrapper);
-    select.addEventListener('change', event => translatePage(event.target.value));
+    wrapper.innerHTML = '<label class="dcl-sr-only" for="dclLanguageSelect">Website language</label><select id="dclLanguageSelect" aria-label="Website language"><option value="en">🇬🇧 English</option><option value="fil">🇵🇭 Filipino</option></select>';
+    nav.appendChild(wrapper);
+    wrapper.querySelector('select').addEventListener('change', event => translatePage(event.target.value));
     const style = document.createElement('style');
-    style.textContent = `.dcl-language-control{display:flex;align-items:center;margin-left:12px;flex-shrink:0}.dcl-language-control select{width:62px;min-width:62px;background:#111;color:#ead4a0;border:1px solid rgba(201,164,92,.65);border-radius:4px;padding:9px 5px;font:inherit;font-size:21px;line-height:1.2;text-align:center;cursor:pointer;appearance:auto}.dcl-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:650px){.dcl-language-control{margin-left:auto;margin-right:8px}.dcl-language-control select{width:58px;min-width:58px;padding:8px 4px;font-size:20px}.topbar .nav{gap:6px}}`;
+    style.textContent = `.dcl-language-control{display:flex;align-items:center;margin-left:12px;flex-shrink:0}.dcl-language-control select{background:#111;color:#ead4a0;border:1px solid rgba(201,164,92,.65);border-radius:4px;padding:9px 10px;font:inherit;font-size:12px;cursor:pointer;max-width:125px}.dcl-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:650px){.dcl-language-control{margin-left:auto;margin-right:8px}.dcl-language-control select{padding:8px 6px;max-width:112px}.topbar .nav{gap:6px}}`;
     document.head.appendChild(style);
   }
 
@@ -63,7 +51,7 @@
     addSelector();
     let saved = DEFAULT_LANGUAGE;
     try { saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANGUAGE; } catch (_) {}
-    translatePage(dictionaries[saved] || saved === 'en' ? saved : DEFAULT_LANGUAGE);
+    translatePage(saved === 'fil' ? 'fil' : 'en');
   } catch (error) {
     console.error('[Don Caleb Legacy language]', error);
   }

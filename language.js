@@ -1,14 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   const languages = [
-    { code: "en", flag: "🇬🇧", name: "English" },
-    { code: "fil", flag: "🇵🇭", name: "Filipino" },
-    { code: "es", flag: "🇪🇸", name: "Spanish" },
-    { code: "fr", flag: "🇫🇷", name: "French" },
-    { code: "de", flag: "🇩🇪", name: "German" },
-    { code: "ja", flag: "🇯🇵", name: "Japanese" },
-    { code: "zh", flag: "🇨🇳", name: "Chinese" }
-  ];
+  { code: "en", flag: "🇬🇧", name: "English" },
+  { code: "fil", flag: "🇵🇭", name: "Filipino" }
+];
 
   const selector = document.createElement("div");
   selector.className = "language-selector";

@@ -1,158 +1,234 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-  const languages = [
-  { code: "en", flag: "🇬🇧", name: "English" },
-  { code: "fil", flag: "🇵🇭", name: "Filipino" }
-];
+/* DON CALEB LEGACY
+   Manual English / Filipino Language System
+*/
 
-  const selector = document.createElement("div");
-  selector.className = "language-selector";
+(async function () {
+  const STORAGE_KEY = "dcl_language";
+  const DEFAULT_LANGUAGE = "en";
 
-  selector.innerHTML = `
-    <button type="button" class="language-current" aria-label="Select language">
-      <span class="current-flag">🇬🇧</span>
-      <span class="language-arrow">⌄</span>
-    </button>
-    <div class="language-dropdown"></div>
-  `;
+  const LANGUAGES = [
+    ["en", "🇬🇧", "English"],
+    ["fil", "🇵🇭", "Filipino"]
+  ];
 
-  const style = document.createElement("style");
-  style.textContent = `
-    .language-selector {
-      position: relative;
-      display: inline-block;
-      margin-left: 12px;
-      z-index: 1000;
+  let dictionaries = {};
+
+  // TRANSLATION SYSTEM
+  function translatePage(language) {
+    const dictionary = dictionaries[language] || {};
+
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT
+    );
+
+    const nodes = [];
+
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
     }
 
-    .language-current {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      width: 55px;
-      height: 38px;
-      background: #111;
-      border: 1px solid rgba(201,164,92,.5);
-      border-radius: 6px;
-      cursor: pointer;
-      color: #ead4a0;
-    }
-
-    .current-flag {
-      font-size: 21px;
-      line-height: 1;
-    }
-
-    .language-arrow {
-      font-size: 13px;
-      color: #ead4a0;
-    }
-
-    .language-dropdown {
-      display: none;
-      position: absolute;
-      top: 44px;
-      right: 0;
-      min-width: 150px;
-      background: #111;
-      border: 1px solid rgba(201,164,92,.4);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,.4);
-    }
-
-    .language-dropdown.open {
-      display: block;
-    }
-
-    .language-option {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 13px;
-      border: 0;
-      background: transparent;
-      color: #f5f0e6;
-      text-align: left;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .language-option:hover {
-      background: #292218;
-      color: #ead4a0;
-    }
-
-    @media(max-width:650px) {
-      .language-selector {
-        margin-left: 8px;
+    nodes.forEach(node => {
+      if (!node.__dclOriginalText) {
+        node.__dclOriginalText = node.nodeValue;
       }
-      .language-current {
-        width: 48px;
-        height: 36px;
+
+      const original = node.__dclOriginalText;
+      const key = original.trim();
+
+      if (!key) return;
+
+      const translated =
+        language === "en" ? key : dictionary[key];
+
+      if (translated) {
+        const leading = original.match(/^\s*/)[0];
+        const trailing = original.match(/\s*$/)[0];
+
+        node.nodeValue =
+          leading + translated + trailing;
+      } else if (language === "en") {
+        node.nodeValue = original;
       }
-    }
-  `;
-
-  document.head.appendChild(style);
-
-  const nav = document.querySelector(".nav");
-  const menuButton = document.getElementById("menuBtn");
-
-  if (!nav) return;
-
-  if (menuButton) {
-    menuButton.insertAdjacentElement("afterend", selector);
-  } else {
-    nav.appendChild(selector);
-  }
-
-  const currentButton = selector.querySelector(".language-current");
-  const currentFlag = selector.querySelector(".current-flag");
-  const dropdown = selector.querySelector(".language-dropdown");
-
-  languages.forEach(language => {
-    const option = document.createElement("button");
-    option.type = "button";
-    option.className = "language-option";
-    option.innerHTML = `
-      <span>${language.flag}</span>
-      <span>${language.name}</span>
-    `;
-
-    option.addEventListener("click", function () {
-      currentFlag.textContent = language.flag;
-      dropdown.classList.remove("open");
-
-      document.documentElement.lang = language.code;
-      localStorage.setItem("selectedLanguage", language.code);
-
-      document.dispatchEvent(new CustomEvent("languageChanged", {
-        detail: { language: language.code }
-      }));
     });
 
-    dropdown.appendChild(option);
-  });
+    document.documentElement.lang = language;
 
-  currentButton.addEventListener("click", function () {
-    dropdown.classList.toggle("open");
-  });
+    const selector =
+      document.getElementById("dclLanguageSelect");
 
-  document.addEventListener("click", function (event) {
-    if (!selector.contains(event.target)) {
-      dropdown.classList.remove("open");
+    if (selector) {
+      selector.value = language;
     }
-  });
 
-  const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
-  const selected = languages.find(item => item.code === savedLanguage);
-
-  if (selected) {
-    currentFlag.textContent = selected.flag;
-    document.documentElement.lang = selected.code;
+    try {
+      localStorage.setItem(STORAGE_KEY, language);
+    } catch (error) {
+      console.warn("Language preference could not be saved.");
+    }
   }
 
-});
+  // LANGUAGE SELECTOR
+  function addSelector() {
+    const nav = document.querySelector(".topbar .nav");
+    const navLinks = document.getElementById("navLinks");
+
+    if (!nav || !navLinks) return;
+
+    if (document.getElementById("dclLanguageSelect")) return;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "dcl-language-control";
+
+    const label = document.createElement("label");
+    label.className = "dcl-sr-only";
+    label.htmlFor = "dclLanguageSelect";
+    label.textContent = "Website language";
+
+    const select = document.createElement("select");
+    select.id = "dclLanguageSelect";
+    select.setAttribute("aria-label", "Select website language");
+
+    LANGUAGES.forEach(([code, flag, name]) => {
+      const option = document.createElement("option");
+
+      option.value = code;
+      option.textContent = flag;
+      option.title = name;
+
+      select.appendChild(option);
+    });
+
+    wrapper.append(label, select);
+
+    // INSERT AFTER NAVIGATION LINKS
+    navLinks.insertAdjacentElement("afterend", wrapper);
+
+    // SELECT LANGUAGE
+    select.addEventListener("change", function () {
+      translatePage(this.value);
+    });
+
+    // SELECTOR DESIGN
+    const style = document.createElement("style");
+
+    style.textContent = `
+      .topbar .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .topbar .brand {
+        order: 1;
+      }
+
+      .topbar .menu-btn {
+        order: 2;
+      }
+
+      .topbar .navlinks {
+        order: 3;
+      }
+
+      .dcl-language-control {
+        order: 4;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: 12px;
+      }
+
+      .dcl-language-control select {
+        width: 58px;
+        min-width: 58px;
+        height: 42px;
+        padding: 5px;
+        background: #111;
+        color: #ead4a0;
+        border: 1px solid rgba(201,164,92,.65);
+        border-radius: 6px;
+        font-size: 21px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .dcl-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media(max-width: 900px) {
+        .dcl-language-control {
+          margin-left: auto;
+        }
+      }
+
+      @media(max-width: 650px) {
+        .topbar .nav {
+          gap: 8px;
+        }
+
+        .dcl-language-control {
+          margin-left: auto;
+          margin-right: 0;
+        }
+
+        .dcl-language-control select {
+          width: 52px;
+          min-width: 52px;
+          height: 40px;
+          font-size: 20px;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  // LOAD MANUAL TRANSLATIONS
+  try {
+    const response = await fetch("languages.json", {
+      cache: "no-cache"
+    });
+
+    if (!response.ok) {
+      throw new Error("Unable to load languages.json");
+    }
+
+    dictionaries = await response.json();
+
+    addSelector();
+
+    let savedLanguage = DEFAULT_LANGUAGE;
+
+    try {
+      savedLanguage =
+        localStorage.getItem(STORAGE_KEY) || DEFAULT_LANGUAGE;
+    } catch (error) {}
+
+    if (
+      savedLanguage !== "en" &&
+      savedLanguage !== "fil"
+    ) {
+      savedLanguage = DEFAULT_LANGUAGE;
+    }
+
+    translatePage(savedLanguage);
+
+  } catch (error) {
+    console.error(
+      "Don Caleb Legacy Language Error:",
+      error
+    );
+  }
+})();

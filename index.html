@@ -354,7 +354,24 @@ html[lang="fil"] .hero h1 span {
     border-right: 1px solid rgba(201, 164, 92, 0.55);
   }
 }
+/* ABOUT IMAGE - SOFT FADE ON ALL EDGES */
+.about-mark {
+  border: 0;
+  background: transparent;
+}
 
+.about-mark img {
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 55%,
+    transparent 100%
+  );
+}
   </style>
 </head>
 <body>

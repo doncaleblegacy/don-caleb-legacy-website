@@ -324,7 +324,7 @@ html[lang="fil"] .hero h1 span {
     /* FILIPINO NAVIGATION SPACING FIX */
 @media (min-width: 651px) {
   html[lang="fil"] .navlinks {
-    gap: 12px;
+    gap: 0px;
     flex-shrink: 0;
     font-size: 0.68rem;
   }
@@ -337,6 +337,24 @@ html[lang="fil"] .hero h1 span {
     flex-shrink: 0;
   }
 }
+    
+/* DON CALEB LEGACY - GOLD NAVIGATION BORDERS */
+@media (min-width: 651px) {
+  .navlinks {
+    gap: 0;
+  }
+
+  .navlinks a {
+    padding: 8px 10px;
+    border-left: 1px solid rgba(201, 164, 92, 0.55);
+    white-space: nowrap;
+  }
+
+  .navlinks a:last-child {
+    border-right: 1px solid rgba(201, 164, 92, 0.55);
+  }
+}
+
   </style>
 </head>
 <body>

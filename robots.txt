@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://doncaleblegacy.github.io/don-caleb-legacy-website/sitemap.xml
